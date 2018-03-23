@@ -10,5 +10,19 @@ namespace BankClearFileCopy
     /// </summary>
     public class BankDistCollection : Collection<BankDist>
     {
+
+        public bool IsAllOK
+        {
+            get
+            {
+                foreach(BankDist bankDist in this)
+                {
+                    if (!bankDist.IsFileAllCopied)
+                        return false;
+                }
+
+                return true;
+            }
+        }
     }
 }

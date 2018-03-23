@@ -47,11 +47,11 @@ namespace BankClearFileCopy
                 lvi.SubItems.Add(bankDist.Name);
                 lvi.SubItems.Add(bankDist.Source);
                 lvi.SubItems.Add(bankDist.Dest);
-                lvi.SubItems.Add(bankDist.IsOK ? "√" : "×");
+                lvi.SubItems.Add(bankDist.IsFileAllCopied ? "√" : "×");
                 lvi.SubItems.Add(bankDist.Status);
                 lvi.Tag = bankDist;
 
-                if (bankDist.IsOK)
+                if (bankDist.IsFileAllCopied)
                     lvi.BackColor = SystemColors.Window;
                 else
                     lvi.BackColor = Color.Pink;
@@ -65,6 +65,64 @@ namespace BankClearFileCopy
             bankDistLv.Columns[3].Width = -1;
 
             bankDistLv.EndUpdate();
+
+            if (Manager.GetInstance().BankDistCollection.IsAllOK)
+            {
+                isAllOKLb.Text = "是";
+                isAllOKLb.ForeColor = Color.Green;
+            }
+            else
+            {
+                isAllOKLb.Text = "否";
+                isAllOKLb.ForeColor = Color.Red;
+            }
+        }
+
+
+        private void BankDistLvUpdate()
+        {
+            bankDistLv.BeginUpdate();
+            // 进度列表
+            try
+            {
+                for (int i = 0; i < bankDistLv.Items.Count; i++)
+                {
+                    BankDist bankDist = (BankDist)bankDistLv.Items[i].Tag;   // 配置对象
+                    bankDistLv.Items[i].SubItems[4].Text = bankDist.IsFileAllCopied ? "√" : "×";
+                    bankDistLv.Items[i].SubItems[5].Text = bankDist.Status;              // 标志到齐
+
+
+                    if (bankDist.IsRunning)
+                    {
+                        bankDistLv.Items[i].BackColor = Color.LightBlue;
+                        bankDistLv.Items[i].EnsureVisible();
+                    }
+                    else
+                    {
+                        if (bankDist.IsFileAllCopied)
+                            bankDistLv.Items[i].BackColor = SystemColors.Window;
+                        else
+                            bankDistLv.Items[i].BackColor = Color.Pink;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // ui异常过滤
+            }
+
+            bankDistLv.EndUpdate();
+
+            if (Manager.GetInstance().BankDistCollection.IsAllOK)
+            {
+                isAllOKLb.Text = "是";
+                isAllOKLb.ForeColor = Color.Green;
+            }
+            else
+            {
+                isAllOKLb.Text = "否";
+                isAllOKLb.ForeColor = Color.Red;
+            }
         }
 
 
@@ -156,6 +214,9 @@ namespace BankClearFileCopy
                     {
                         UserState us = new UserState(true, ex.Message);
                         bgWorker.ReportProgress(1, us);
+
+                        bankDist.IsRunning = false;
+                        continue;
                     }
 
 
@@ -220,6 +281,9 @@ namespace BankClearFileCopy
                     {
                         UserState us = new UserState(true, ex.Message);
                         bgWorker.ReportProgress(1, us);
+
+                        bankDist.IsRunning = false;
+                        continue;
                     }
 
 
@@ -260,6 +324,10 @@ namespace BankClearFileCopy
                         bankDistFile.CopyFile();
                         bgWorker.ReportProgress(1);
                     }
+
+
+                    bankDist.IsRunning = false;
+                    bgWorker.ReportProgress(1);
 
                 }
 
@@ -349,8 +417,7 @@ namespace BankClearFileCopy
             // 更新listView
             try
             {
-                //ProductListViewUpdate();
-                //FileDetailListViewChange();
+                BankDistLvUpdate();
             }
             catch (Exception ex)
             {
@@ -382,7 +449,7 @@ namespace BankClearFileCopy
             }
             else
             {
-                //UpdateLvHq();
+                BankDistLvUpdate();
                 //Print_Message(string.Format(@"****检查完毕 [文件进度: 所有文件({2}/{3}), 必检文件({0}/{1}), 是否已就绪: {4}]****", _manager.GetFinishedRequiredCnt, _manager.GetAllRequiredCnt, _manager.GetFinishedCnt, _manager.GetAllCnt, _manager.IsAllOK ? "是" : "否"));
                 //UpdateFileSourceInfo();
                 //UpdateFileListInfo();
@@ -402,6 +469,9 @@ namespace BankClearFileCopy
 
             //isOKLabel.Text = manager.IsAllOK ? "是" : "否";
             //executeLoopButton.Text = "开始自动执行";
+
+            executeBtn.Text = "执行";
+            stautsLb.Text = "运行完毕";
         }
 
 
@@ -410,5 +480,78 @@ namespace BankClearFileCopy
             logTb.Text = string.Format("{0}:{1}", DateTime.Now.ToString("HH:mm:ss"), message) + System.Environment.NewLine + logTb.Text;
         }
 
+
+        /// <summary>
+        /// 主ListView切换事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bankDistLv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BankDistDetailLvChange();
+        }
+
+        private void BankDistDetailLvChange()
+        {
+            if (bankDistLv.SelectedItems != null && bankDistLv.SelectedItems.Count > 0)
+            {
+                ListViewItem bankDistLVI = bankDistLv.SelectedItems[0];
+                if (bankDistLVI != null)
+                {
+                    BankDist bankDist = (BankDist)bankDistLVI.Tag;
+
+
+                    bankDistDetailLv.Items.Clear();
+                    bankDistDetailLv.BeginUpdate();
+                    int idx = 0;
+                    foreach (BankDistFile bankDistFile in bankDist.BankDistFileList)
+                    {
+                        ListViewItem bankDistFileLVI = new ListViewItem((++idx).ToString());
+                        bankDistFileLVI.SubItems.Add(bankDistFile.BankName);
+                        bankDistFileLVI.SubItems.Add(bankDistFile.FileName);
+                        bankDistFileLVI.SubItems.Add(bankDistFile.FileExist ? "√" : "×");
+                        bankDistFileLVI.SubItems.Add(bankDistFile.CheckedPassed ? "√" : "×");
+                        bankDistFileLVI.SubItems.Add(bankDistFile.IsCopied ? "√" : "×");
+                        bankDistFileLVI.SubItems.Add(bankDistFile.Status);
+                        bankDistFileLVI.Tag = bankDistFile;
+
+                        bankDistDetailLv.Items.Add(bankDistFileLVI);
+
+                        //if (tmpHqFile.Required)
+                        //{
+                        //    if (tmpHqFile.IsOK)
+                        //        lvHq.Items[i].BackColor = SystemColors.Window;
+                        //    else
+                        //        lvHq.Items[i].BackColor = Color.Pink;
+                        //}
+                        //else
+                        //{
+                        //    if (tmpHqFile.IsOK)
+                        //        lvHq.Items[i].BackColor = SystemColors.Window;
+                        //    else
+                        //        lvHq.Items[i].BackColor = Color.LightYellow;
+                        //}
+
+                    }
+
+
+                    bankDistDetailLv.Columns[0].Width = -1;
+                    //bankDistDetailLv.Columns[1].Width = -1;
+                    //bankDistDetailLv.Columns[2].Width = -1;
+                    //bankDistLv.Columns[6].Width = -1;
+
+                    bankDistDetailLv.EndUpdate();
+                }
+            }
+            else
+            {
+                bankDistDetailLv.Items.Clear();
+            }
+        }
+
+        private void bankDistLv_Click(object sender, EventArgs e)
+        {
+            BankDistDetailLvChange();
+        }
     }
 }

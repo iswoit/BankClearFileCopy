@@ -78,7 +78,7 @@ namespace BankClearFileCopy
 
 
                     // 生成配置对象
-                    BankDist tmpBankDist = new BankDist(name, source, dest);
+                    BankDist tmpBankDist = new BankDist(name, source, dest, _dtNow);
                     _bankDistCollection.Add(tmpBankDist);
                 }//eof foreach
             }//eof using

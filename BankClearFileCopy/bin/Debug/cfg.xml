@@ -4,7 +4,7 @@
 		<Bank>
 			<Name>宁波银行</Name>
 			<Source>D:\sfcgqs\nbcg\secu\YYYYMMDD\</Source>
-			<Dest>\\10.32.7.63\dd\sfcg\nbcg\secu\YYYYMMDD\</Dest>
+			<Dest>D:\aaa\nbcg\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用宁波</Name>

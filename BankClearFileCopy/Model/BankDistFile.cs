@@ -61,7 +61,7 @@ namespace BankClearFileCopy
                 _fileExist = true;
 
                 FileInfo fi = new FileInfo(sourceFilePath);
-                _fileSizeActual = fi.Length / 8;
+                _fileSizeActual = fi.Length;
                 _fileDateActual = fi.LastWriteTime;
                 _fileTimeActual = fi.LastWriteTime;
 
@@ -147,7 +147,9 @@ namespace BankClearFileCopy
                 return false;
             }
 
-            if (_fileTimeIdx.TimeOfDay == _fileTimeActual.TimeOfDay)
+            if (_fileTimeIdx.Hour == _fileTimeActual.Hour
+                && _fileTimeIdx.Minute == _fileTimeActual.Minute
+                && _fileTimeIdx.Second == _fileTimeActual.Second)
             {
                 _stauts = string.Empty;
                 return true;
@@ -181,6 +183,12 @@ namespace BankClearFileCopy
             }
         }
 
+
+
+        public string BankName
+        {
+            get { return _bankDist.Name; }
+        }
 
         public string FileName
         {
@@ -221,6 +229,11 @@ namespace BankClearFileCopy
         public DateTime FileTimeActual
         {
             get { return _fileTimeActual; }
+        }
+
+        public bool CheckedPassed
+        {
+            get { return _checkedPassed; }
         }
 
 
