@@ -12,7 +12,7 @@ namespace BankClearFileCopy
     public class Manager
     {
         DateTime _dtNow;                    // 处理日期
-        private static Manager _instance;   // 单例模式
+        private static Manager _instance = null;   // 单例模式
         private BankDistCollection _bankDistCollection;     // 存管列表集合对象（类似列表对象）
 
         private bool _isRunning;            // 是否运行中

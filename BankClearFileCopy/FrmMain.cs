@@ -114,6 +114,7 @@ namespace BankClearFileCopy
                         bankDist.IsSourceExist = false;
                         bgWorker.ReportProgress(1);
 
+                        bankDist.IsRunning = false;
                         continue;
                     }
                     else
@@ -123,28 +124,50 @@ namespace BankClearFileCopy
                     }
 
 
-                    // 目标路径是否能访问（！目的路径是否能访问，这个有问题，因为有可能文件夹不存在）
-                    if (!Util.IsPathExistWithTimeout(bankDist.Dest))
+                    // 2.目标路径是否能访问（！目的路径是否能访问，这个有问题，因为有可能文件夹不存在）
+                    try
                     {
-                        Directory.CreateDirectory
-                        bankDist.IsSourceExist = false;
-                        bgWorker.ReportProgress(1);
+                        // 新建文件夹
+                        try
+                        {
+                            if (!Util.IsPathExist(bankDist.Dest))
+                                Directory.CreateDirectory(bankDist.Dest);
+                        }
+                        catch (Exception ex)
+                        { }
 
-                        continue;
+
+                        // 目的路径存在性
+                        if (!Util.IsPathExistWithTimeout(bankDist.Dest))
+                        {
+                            bankDist.IsDestExist = false;
+                            bgWorker.ReportProgress(1);
+
+                            bankDist.IsRunning = false;
+                            continue;
+                        }
+                        else
+                        {
+                            bankDist.IsDestExist = true;
+                            bgWorker.ReportProgress(1);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        bankDist.IsSourceExist = true;
-                        bgWorker.ReportProgress(1);
+                        UserState us = new UserState(true, ex.Message);
+                        bgWorker.ReportProgress(1, us);
                     }
 
 
-                    // 2.判断索引文件是否存在
-                    string idxFile = Path.Combine(bankDist.Source, Util.ReplaceStringWithDateFormat(@"YYYYMMDD证券清算文件.txt", Manager.GetInstance().DTNow));
+                    // 3.判断索引文件是否存在
+                    string idxFile = Path.Combine(bankDist.Source, bankDist.IdxFileName);
                     if (!File.Exists(idxFile))
                     {
                         bankDist.IsIdxFileExist = false;
                         bgWorker.ReportProgress(1);
+
+                        bankDist.IsRunning = false;
+                        continue;
                     }
                     else
                     {
@@ -152,10 +175,8 @@ namespace BankClearFileCopy
                         bgWorker.ReportProgress(1);
                     }
 
-                    //FileInfo fi = new FileInfo(idxFile);
-                    //fi.
 
-                    // 3.解析索引文件，生成对象表
+                    // 4.解析索引文件，生成对象表
                     bankDist.BankDistFileList = new List<BankDistFile>();   // 清空
                     try
                     {
@@ -197,15 +218,48 @@ namespace BankClearFileCopy
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(ex.Message);
+                        UserState us = new UserState(true, ex.Message);
+                        bgWorker.ReportProgress(1, us);
                     }
 
 
-                    // 4.对每个文件进行校验，通过一个复制一个
+                    // 5.复制索引文件
+                    try
+                    {
+
+                        string sourcePath = idxFile;
+                        string destPath = Path.Combine(bankDist.Dest, bankDist.IdxFileName);
+                        File.Copy(sourcePath, destPath, true);
+                        bankDist.IsIdxFileCopied = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        bankDist.IsIdxFileCopied = false;
+                        bankDist.IsRunning = false;
+
+                        UserState us = new UserState(true, ex.Message);
+                        bgWorker.ReportProgress(1, us);
+
+                        continue;
+                    }
 
 
 
-                    
+                    // 6.对每个文件进行校验，通过一个复制一个
+                    foreach (BankDistFile bankDistFile in bankDist.BankDistFileList)
+                    {
+                        // 文件存在性、文件修改时间、文件大小
+                        bankDistFile.GetFileInfo();
+
+
+                        bankDistFile.CheckFile();
+                        bgWorker.ReportProgress(1);
+
+
+                        bankDistFile.CopyFile();
+                        bgWorker.ReportProgress(1);
+                    }
 
                 }
 
