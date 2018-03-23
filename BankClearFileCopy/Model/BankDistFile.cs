@@ -77,12 +77,13 @@ namespace BankClearFileCopy
 
 
         /// <summary>
-        /// 检查文件
+        /// 检查文件（20180324：只检查文件大小）
         /// </summary>
         /// <returns></returns>
         public bool CheckFile()
         {
-            if (IsSizeCheckPass() && IsDateCheckPass() && IsTimeCheckPass())
+            _stauts = string.Empty;
+            if (IsSizeCheckPass() && IsDateCheckPass() && IsTimeCheckPass())//if (IsSizeCheckPass() && IsDateCheckPass() && IsTimeCheckPass())
             {
                 _checkedPassed = true;
                 return true;
@@ -110,7 +111,7 @@ namespace BankClearFileCopy
             }
             else
             {
-                _stauts = string.Format(@"[0]文件[{1}]索引在文件中大小为[{2}], 实际大小为[{3}]. 请检查!", _bankDist.Name, _fileName, _fileSizeIdx, _fileSizeActual);
+                _stauts = string.Format(@"[{0}]文件[{1}]在索引文件中大小为[{2}], 实际大小为[{3}]. 请检查!", _bankDist.Name, _fileName, _fileSizeIdx, _fileSizeActual);
                 _checkedPassed = false;
                 return false;
             }
@@ -132,9 +133,9 @@ namespace BankClearFileCopy
             }
             else
             {
-                _stauts = string.Format(@"[0]文件[{1}]索引在文件中日期为[{2}], 实际日期为[{3}]. 请检查!", _bankDist.Name, _fileName, _fileDateIdx.ToString("yyyyMMdd"), _fileDateActual.ToString("yyyyMMdd"));
-                _checkedPassed = false;
-                return false;
+                _stauts = string.Format(@"[{0}]文件[{1}]在索引文件中日期为[{2}], 实际日期为[{3}]. 请检查!", _bankDist.Name, _fileName, _fileDateIdx.ToString("yyyyMMdd"), _fileDateActual.ToString("yyyyMMdd"));
+                _checkedPassed = true;      // 暂时放过
+                return true;
             }
         }
 
@@ -156,9 +157,9 @@ namespace BankClearFileCopy
             }
             else
             {
-                _stauts = string.Format(@"[0]文件[{1}]索引在文件中修改时间为[{2}], 实际修改时间为[{3}]. 请检查!", _bankDist.Name, _fileName, _fileTimeIdx.ToString("HH:mm:ss"), _fileTimeActual.ToString("HH:mm:ss"));
-                _checkedPassed = false;
-                return false;
+                _stauts = string.Format(@"[{0}]文件[{1}]在索引文件中修改时间为[{2}], 实际修改时间为[{3}]. 请检查!", _bankDist.Name, _fileName, _fileTimeIdx.ToString("HH:mm:ss"), _fileTimeActual.ToString("HH:mm:ss"));
+                _checkedPassed = true;  // 暂时放过
+                return true;
             }
         }
 

@@ -10,18 +10,38 @@ namespace BankClearFileCopy
     /// </summary>
     public class BankDistCollection : Collection<BankDist>
     {
-
-        public bool IsAllOK
+        /// <summary>
+        /// 所有存管清算文件已发送
+        /// </summary>
+        public bool IsAllBankCopied
         {
             get
             {
-                foreach(BankDist bankDist in this)
+                foreach (BankDist bankDist in this)
                 {
-                    if (!bankDist.IsFileAllCopied)
+                    if (!bankDist.IsIdxFileCopied || !bankDist.IsFileAllCopied)   // 只要有一个存管索引文件或者文件没发，就报错
                         return false;
                 }
 
                 return true;
+            }
+        }
+
+
+        /// <summary>
+        /// 完成的个数
+        /// </summary>
+        public int OKCnt
+        {
+            get
+            {
+                int cnt = 0;
+                foreach (BankDist bankDist in this)
+                {
+                    if (bankDist.IsFileAllCopied)
+                        cnt++;
+                }
+                return cnt;
             }
         }
     }

@@ -18,6 +18,7 @@ namespace BankClearFileCopy
 
 
         // 运行时变量
+        private bool _isStarted;
         private bool _isRunning;                        // 是否运行中
         private bool _isSourceExist;                    // 源文件是否可访问
         private bool _isDestExist;                      // 目的文件是否可访问
@@ -41,9 +42,8 @@ namespace BankClearFileCopy
 
             _idxFileName = Util.ReplaceStringWithDateFormat(@"YYYYMMDD证券清算文件.txt", dtNow);
 
-
+            _isStarted = false;
             _isRunning = false;
-            _status = "未开始";
         }
 
 
@@ -80,6 +80,12 @@ namespace BankClearFileCopy
             set { _isIdxFileCopied = value; }
         }
 
+
+        public bool IsStarted
+        {
+            get { return _isStarted; }
+            set { _isStarted = value; }
+        }
 
         /// <summary>
         /// 此存管是否在运行中
@@ -122,24 +128,30 @@ namespace BankClearFileCopy
         {
             get
             {
-                if (_isRunning)
-                    return "运行中...";
-                else if (_isSourceExist == false)
-                    return "源路径无法访问";
-                else if (_isDestExist == false)
-                    return "目的路径无法访问";
-                else if (_isIdxFileExist == false)
-                    return "索引文件不存在[YYYYMMDD证券清算文件.txt]";
-                else if (_isIdxFileCopied == false)
-                    return "索引文件拷贝失败";
+                if (_isStarted == false)
+                    return "未开始";
                 else
                 {
-                    if (IsFileAllCopied)
-                        return "完成";
+                    if (_isRunning)
+                    {
+                        return "运行中...";
+                    }
+                    else if (_isSourceExist == false)
+                        return "源路径无法访问";
+                    else if (_isDestExist == false)
+                        return "目的路径无法访问";
+                    else if (_isIdxFileExist == false)
+                        return "索引文件不存在[YYYYMMDD证券清算文件.txt]";
+                    else if (_isIdxFileCopied == false)
+                        return "索引文件拷贝失败";
                     else
-                        return "已执行, 有误";
+                    {
+                        if (IsFileAllCopied)
+                            return "完成";
+                        else
+                            return "已执行, 有误";
+                    }
                 }
-
             }
             set { _status = value; }
         }
@@ -151,11 +163,15 @@ namespace BankClearFileCopy
         }
 
 
+
         public bool IsFileAllCopied
         {
             get
             {
                 if (_bankDistFileList == null || _bankDistFileList.Count <= 0)
+                    return false;
+
+                if (_isIdxFileExist == false || _isIdxFileCopied == false)
                     return false;
 
                 foreach (BankDistFile bankDistFile in _bankDistFileList)

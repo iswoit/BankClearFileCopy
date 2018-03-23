@@ -4,142 +4,142 @@
 		<Bank>
 			<Name>光大银行</Name>
 			<Source>D:\sfcgqs\gdcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\gdcg\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.63\dd\sfcg\gdcg\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>广发银行</Name>
 			<Source>D:\sfcgqs\gfcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\gfcg\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.64\dd\sfcg\gfcg\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>工商银行</Name>
 			<Source>D:\sfcgqs\ghcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\ghcg\qsfile\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.96.17\dd\ghcg\qsfile\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>华夏银行</Name>
 			<Source>D:\sfcgqs\hxcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\hxcg\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.63\dd\sfcg\hxcg\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>建设银行</Name>
 			<Source>D:\sfcgqs\jhcg\secu\</Source>
-			<Dest>D:\ctsfile\vipwinbridge\</Dest>
+			<Dest>\\10.32.96.21\ctsfile\vipwinbridge\</Dest>
 		</Bank>
 		<Bank>
 			<Name>交通银行</Name>
 			<Source>D:\sfcgqs\jtcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\jtcg\qsfile\</Dest>
+			<Dest>\\10.32.96.27\dd\jtcg\qsfile\</Dest>
 		</Bank>
 		<Bank>
 			<Name>民生银行</Name>
 			<Source>D:\sfcgqs\mscg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\mscg\</Dest>
+			<Dest>\\10.32.96.25\dd\mscg\</Dest>
 		</Bank>
 		<Bank>
 			<Name>宁波银行</Name>
 			<Source>D:\sfcgqs\nbcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\nbcg\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.63\dd\sfcg\nbcg\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>农业银行</Name>
 			<Source>D:\sfcgqs\nhcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\nhcg\qsfile\secu\</Dest>
+			<Dest>\\10.32.96.15\dd\nhcg\qsfile\secu\</Dest>
 		</Bank>
 		<Bank>
 			<Name>平安银行</Name>
 			<Source>D:\sfcgqs\pacg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\pacg\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.64\dd\sfcg\pacg\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>浦发银行</Name>
 			<Source>D:\sfcgqs\pfcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\pfcg\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.64\dd\sfcg\pfcg\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用光大</Name>
 			<Source>D:\sfcgqs\gdcg_xy\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\xygd\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.63\dd\sfcg\xygd\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用广发</Name>
 			<Source>D:\sfcgqs\gfcg_xy\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\xygf\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.64\dd\sfcg\xygf\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用工行</Name>
 			<Source>D:\sfcgqs\ghcg_xy\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\ghcg\qsfile\rzrqsecu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.96.17\dd\ghcg\qsfile\rzrqsecu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用建行</Name>
 			<Source>D:\sfcgqs\jhcg_xy\secu\</Source>
-			<Dest>D:\ctsfile0336\vipwinbridge\</Dest>
+			<Dest>\\10.32.96.21\ctsfile0336\vipwinbridge\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用交通</Name>
 			<Source>D:\sfcgqs\xyjtcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\jtcg_rzrq\qsfile\</Dest>
+			<Dest>\\10.32.96.27\dd\jtcg_rzrq\qsfile\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用宁波</Name>
 			<Source>D:\sfcgqs\nbcg_xy\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\xynb\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.63\dd\sfcg\xynb\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用农行</Name>
 			<Source>D:\sfcgqs\nhcg_xy\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\nhcg_rzrq\qsfile\secu\</Dest>
+			<Dest>\\10.32.96.15\dd\nhcg_rzrq\qsfile\secu\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用平安</Name>
 			<Source>D:\sfcgqs\xypa\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\xypa\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.64\dd\sfcg\xypa\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用浦发</Name>
 			<Source>D:\sfcgqs\xypf\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\xypf\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.64\dd\sfcg\xypf\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用兴业</Name>
 			<Source>D:\sfcgqs\xycg_xy\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\xycg_rzrq\qsfile\</Dest>
+			<Dest>\\10.32.96.23\dd\xycg_rzrq\qsfile\</Dest>
 		</Bank>
 		<Bank>
 			<Name>兴业银行</Name>
 			<Source>D:\sfcgqs\xycg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\xycg\qsfile\</Dest>
+			<Dest>\\10.32.96.23\dd\xycg\qsfile\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用中行</Name>
 			<Source>D:\sfcgqs\zhcg_xy\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\zhcg_rzrq\qsfile\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.96.13\dd\zhcg_rzrq\qsfile\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>信用招商</Name>
 			<Source>D:\sfcgqs\xyzs\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\xyzs\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.63\dd\sfcg\xyzs\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>邮储银行</Name>
 			<Source>D:\sfcgqs\yccg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\yccg\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.64\dd\sfcg\yccg\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>中国银行</Name>
 			<Source>D:\sfcgqs\zhcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\zhcg\qsfile\</Dest>
+			<Dest>\\10.32.96.13\dd\zhcg\qsfile\</Dest>
 		</Bank>
 		<Bank>
 			<Name>招商银行</Name>
 			<Source>D:\sfcgqs\zscg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\zscg\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.63\dd\sfcg\zscg\secu\YYYYMMDD\</Dest>
 		</Bank>
 		<Bank>
 			<Name>中信银行</Name>
 			<Source>D:\sfcgqs\zxcg\secu\YYYYMMDD\</Source>
-			<Dest>D:\dd\sfcg\zxcg\secu\YYYYMMDD\</Dest>
+			<Dest>\\10.32.7.63\dd\sfcg\zxcg\secu\YYYYMMDD\</Dest>
 		</Bank>
 	</BankList>
 </Config>
