@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK"?>
+<Config>
+	<BankList>
+		<Bank>
+			<Name>宁波银行</Name>
+			<Source>D:\sfcgqs\nbcg\secu\YYYYMMDD\</Source>
+			<Dest>\\10.32.7.63\dd\sfcg\nbcg\secu\YYYYMMDD\</Dest>
+		</Bank>
+		<Bank>
+			<Name>信用宁波</Name>
+			<Source>D:\sfcgqs\nbcg_xy\secu\YYYYMMDD\</Source>
+			<Dest>\\10.32.7.63\dd\sfcg\xynb\secu\YYYYMMDD\</Dest>
+		</Bank>
+	</BankList>
+</Config>

@@ -30,12 +30,12 @@
         {
             this.mainTab = new System.Windows.Forms.TabControl();
             this.distributeTabPage = new System.Windows.Forms.TabPage();
-            this.bankDistLv = new System.Windows.Forms.ListView();
+            this.bankDistLv = new DoubleBufferListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.bankDistDetailLv = new System.Windows.Forms.ListView();
+            this.bankDistDetailLv = new DoubleBufferListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,10 +50,11 @@
             this.logTb = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.stautsLb = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.isOKLb = new System.Windows.Forms.Label();
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.distBW = new System.ComponentModel.BackgroundWorker();
             this.mainTab.SuspendLayout();
             this.distributeTabPage.SuspendLayout();
             this.SuspendLayout();
@@ -71,9 +72,9 @@
             // distributeTabPage
             // 
             this.distributeTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.distributeTabPage.Controls.Add(this.label7);
+            this.distributeTabPage.Controls.Add(this.isOKLb);
             this.distributeTabPage.Controls.Add(this.label6);
-            this.distributeTabPage.Controls.Add(this.label5);
+            this.distributeTabPage.Controls.Add(this.stautsLb);
             this.distributeTabPage.Controls.Add(this.label4);
             this.distributeTabPage.Controls.Add(this.label3);
             this.distributeTabPage.Controls.Add(this.logTb);
@@ -126,7 +127,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "说明";
-            this.columnHeader4.Width = 114;
+            this.columnHeader4.Width = 140;
             // 
             // bankDistDetailLv
             // 
@@ -155,7 +156,7 @@
             // columnHeader6
             // 
             this.columnHeader6.Text = "文件名";
-            this.columnHeader6.Width = 174;
+            this.columnHeader6.Width = 372;
             // 
             // columnHeader7
             // 
@@ -213,6 +214,7 @@
             this.executeBtn.TabIndex = 4;
             this.executeBtn.Text = "执行";
             this.executeBtn.UseVisualStyleBackColor = true;
+            this.executeBtn.Click += new System.EventHandler(this.executeBtn_Click);
             // 
             // logTb
             // 
@@ -241,14 +243,14 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "运行状态:";
             // 
-            // label5
+            // stautsLb
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(850, 352);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "未运行";
+            this.stautsLb.AutoSize = true;
+            this.stautsLb.Location = new System.Drawing.Point(850, 352);
+            this.stautsLb.Name = "stautsLb";
+            this.stautsLb.Size = new System.Drawing.Size(41, 12);
+            this.stautsLb.TabIndex = 8;
+            this.stautsLb.Text = "未运行";
             // 
             // label6
             // 
@@ -259,19 +261,27 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "是否完成:";
             // 
-            // label7
+            // isOKLb
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(850, 384);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 12);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "否";
+            this.isOKLb.AutoSize = true;
+            this.isOKLb.Location = new System.Drawing.Point(850, 384);
+            this.isOKLb.Name = "isOKLb";
+            this.isOKLb.Size = new System.Drawing.Size(17, 12);
+            this.isOKLb.TabIndex = 10;
+            this.isOKLb.Text = "否";
             // 
             // columnHeader13
             // 
             this.columnHeader13.Text = "存管名称";
             this.columnHeader13.Width = 80;
+            // 
+            // distBW
+            // 
+            this.distBW.WorkerReportsProgress = true;
+            this.distBW.WorkerSupportsCancellation = true;
+            this.distBW.DoWork += new System.ComponentModel.DoWorkEventHandler(this.distBW_DoWork);
+            this.distBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.distBW_ProgressChanged);
+            this.distBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.distBW_RunWorkerCompleted);
             // 
             // FrmMain
             // 
@@ -292,12 +302,12 @@
 
         private System.Windows.Forms.TabControl mainTab;
         private System.Windows.Forms.TabPage distributeTabPage;
-        private System.Windows.Forms.ListView bankDistLv;
+        private DoubleBufferListView bankDistLv;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ListView bankDistDetailLv;
+        private DoubleBufferListView bankDistDetailLv;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
@@ -311,11 +321,12 @@
         private System.Windows.Forms.Button executeBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox logTb;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label isOKLb;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label stautsLb;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.ComponentModel.BackgroundWorker distBW;
     }
 }
 

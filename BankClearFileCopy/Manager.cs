@@ -15,6 +15,7 @@ namespace BankClearFileCopy
         private static Manager _instance;   // 单例模式
         private BankDistCollection _bankDistCollection;     // 存管列表集合对象（类似列表对象）
 
+        private bool _isRunning;            // 是否运行中
 
         /// <summary>
         /// 构造函数
@@ -110,6 +111,12 @@ namespace BankClearFileCopy
         public DateTime DTNow
         {
             get { return _dtNow; }
+        }
+
+        public bool IsRunning
+        {
+            get { return _isRunning; }
+            set { _isRunning = value; }
         }
     }
 }

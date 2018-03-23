@@ -52,6 +52,11 @@
     <Compile Include="Model\BankDistFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\CheckPathTimeout.cs" />
+    <Compile Include="Util\DoubleBufferListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Util\UserState.cs" />
     <Compile Include="Util\Util.cs" />
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

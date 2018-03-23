@@ -9,11 +9,18 @@ namespace BankClearFileCopy
     /// </summary>
     public class BankDist
     {
+        // 静态变量
         private string _name;                           // 存管名称
         private string _source;                         // 源路径
         private string _dest;                           // 目的路径
         private List<BankDistFile> _bankDistFileList;       // 存管清算发送文件列表
+
+        // 运行时变量
         private bool _isRunning;                        // 是否运行中
+        private bool _isSourceExist;                    // 源文件是否可访问
+        private bool _isDestExist;                      // 目的文件是否可访问
+        private bool _isIdxFileExist;                   // 索引文件是否存在
+
         private string status;                          // 说明
 
         /// <summary>
@@ -57,6 +64,33 @@ namespace BankClearFileCopy
             get { return false; }
         }
 
+        /// <summary>
+        /// 此存管是否在运行中
+        /// </summary>
+        public bool IsRunning
+        {
+            get { return _isRunning; }
+            set { _isRunning = value; }
+        }
+
+        /// <summary>
+        /// 源路径是否能访问
+        /// </summary>
+        public bool IsSourceExist
+        {
+            get { return _isSourceExist; }
+            set { _isSourceExist = value; }
+        }
+
+        /// <summary>
+        /// 源路径下的索引文件是否存在
+        /// </summary>
+        public bool IsIdxFileExist
+        {
+            get { return _isIdxFileExist; }
+            set { _isIdxFileExist = value; }
+        }
+
         public string Status
         {
             get { return status; }
@@ -65,8 +99,9 @@ namespace BankClearFileCopy
         public List<BankDistFile> BankDistFileList
         {
             get { return _bankDistFileList; }
+            set { _bankDistFileList = value; }
         }
 
-        
+
     }
 }

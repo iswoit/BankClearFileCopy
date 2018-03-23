@@ -1,0 +1,8 @@
+D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\obj\Debug\BankClearFileCopy.FrmMain.resources
+D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\obj\Debug\BankClearFileCopy.Properties.Resources.resources
+D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\obj\Debug\BankClearFileCopy.csproj.GenerateResource.Cache
+D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\bin\Debug\BankClearFileCopy.exe
+D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\bin\Debug\BankClearFileCopy.pdb
+D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\obj\Debug\BankClearFileCopy.exe
+D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\obj\Debug\BankClearFileCopy.pdb
+D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\obj\Debug\BankClearFileCopy.csprojResolveAssemblyReference.cache
