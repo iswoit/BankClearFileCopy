@@ -5,3 +5,4 @@ D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\bin\Debug\BankClearFileCopy.exe
 D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\bin\Debug\BankClearFileCopy.pdb
 D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\obj\Debug\BankClearFileCopy.exe
 D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\obj\Debug\BankClearFileCopy.pdb
+D:\Codes\C#\BankClearFileCopy\BankClearFileCopy\obj\Debug\BankClearFileCopy.csprojResolveAssemblyReference.cache

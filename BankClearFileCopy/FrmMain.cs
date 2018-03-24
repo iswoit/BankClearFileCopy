@@ -20,7 +20,7 @@ namespace BankClearFileCopy
             try
             {
                 Manager.GetInstance();
-                //Print_Message(string.Format(@"从数据库获取上一交易日成功, 上一交易日: {0}", manager.DtPrevious));
+                dateLabel.Text = Manager.GetInstance().DTNow.ToString("yyyy-MM-dd");
 
                 // 更新UI
                 BankDistLvInit();
@@ -418,6 +418,7 @@ namespace BankClearFileCopy
             try
             {
                 BankDistLvUpdate();
+                BankDistDetailLvChange();
             }
             catch (Exception ex)
             {
@@ -450,9 +451,9 @@ namespace BankClearFileCopy
             else
             {
                 BankDistLvUpdate();
+                BankDistDetailLvChange();
                 //Print_Message(string.Format(@"****检查完毕 [文件进度: 所有文件({2}/{3}), 必检文件({0}/{1}), 是否已就绪: {4}]****", _manager.GetFinishedRequiredCnt, _manager.GetAllRequiredCnt, _manager.GetFinishedCnt, _manager.GetAllCnt, _manager.IsAllOK ? "是" : "否"));
-                //UpdateFileSourceInfo();
-                //UpdateFileListInfo();
+
 
                 //// 处理状态标签
                 //lbStatus.Text = "完成，等待下一轮";
@@ -460,8 +461,6 @@ namespace BankClearFileCopy
 
                 Print_Message("执行完成");
 
-                //ProductListViewUpdate();
-                //FileDetailListViewChange();
             }
 
             //manager.IsRunning = false;

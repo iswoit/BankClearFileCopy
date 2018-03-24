@@ -40,6 +40,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.distBW = new System.ComponentModel.BackgroundWorker();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.dateLabel = new System.Windows.Forms.ToolStripLabel();
             this.bankDistDetailLv = new BankClearFileCopy.DoubleBufferListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -57,6 +59,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTab.SuspendLayout();
             this.distributeTabPage.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTab
@@ -66,7 +69,7 @@
             this.mainTab.Location = new System.Drawing.Point(0, 0);
             this.mainTab.Name = "mainTab";
             this.mainTab.SelectedIndex = 0;
-            this.mainTab.Size = new System.Drawing.Size(996, 591);
+            this.mainTab.Size = new System.Drawing.Size(933, 570);
             this.mainTab.TabIndex = 0;
             // 
             // distributeTabPage
@@ -86,7 +89,7 @@
             this.distributeTabPage.Location = new System.Drawing.Point(4, 22);
             this.distributeTabPage.Name = "distributeTabPage";
             this.distributeTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.distributeTabPage.Size = new System.Drawing.Size(988, 565);
+            this.distributeTabPage.Size = new System.Drawing.Size(925, 544);
             this.distributeTabPage.TabIndex = 0;
             this.distributeTabPage.Text = "清算后发送银行数据";
             // 
@@ -180,6 +183,25 @@
             this.distBW.DoWork += new System.ComponentModel.DoWorkEventHandler(this.distBW_DoWork);
             this.distBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.distBW_ProgressChanged);
             this.distBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.distBW_RunWorkerCompleted);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dateLabel});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 570);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(933, 29);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // dateLabel
+            // 
+            this.dateLabel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.dateLabel.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Size = new System.Drawing.Size(146, 26);
+            this.dateLabel.Text = "YYYY-MM-DD";
             // 
             // bankDistDetailLv
             // 
@@ -291,14 +313,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 591);
+            this.ClientSize = new System.Drawing.Size(933, 599);
             this.Controls.Add(this.mainTab);
+            this.Controls.Add(this.toolStrip1);
             this.Name = "FrmMain";
             this.Text = "银行清算文件拷贝";
             this.mainTab.ResumeLayout(false);
             this.distributeTabPage.ResumeLayout(false);
             this.distributeTabPage.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -331,6 +357,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.ComponentModel.BackgroundWorker distBW;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel dateLabel;
     }
 }
 
