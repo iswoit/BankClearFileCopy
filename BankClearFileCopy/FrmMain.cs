@@ -242,7 +242,7 @@ namespace BankClearFileCopy
                     bankDist.IsStarted = true;
                     bankDist.IsRunning = true;
                     bgWorker.ReportProgress(1);
-                    Thread.Sleep(30);
+                    Thread.Sleep(40);
 
 
                     // 1.源路径是否能访问
@@ -259,7 +259,7 @@ namespace BankClearFileCopy
                         bankDist.IsRunning = false;
                         continue;
                     }
-                    Thread.Sleep(30);
+                    Thread.Sleep(40);
 
 
                     // 2.目标路径是否能访问
@@ -294,7 +294,7 @@ namespace BankClearFileCopy
                         bankDist.IsRunning = false;
                         continue;
                     }
-                    Thread.Sleep(30);
+                    Thread.Sleep(40);
 
 
                     // 3.判断索引文件是否存在
@@ -324,7 +324,7 @@ namespace BankClearFileCopy
                         bankDist.IsRunning = false;
                         continue;
                     }
-                    Thread.Sleep(30);
+                    Thread.Sleep(40);
 
 
                     // 4.解析索引文件，生成对象表
@@ -376,7 +376,7 @@ namespace BankClearFileCopy
                         bankDist.IsRunning = false;
                         continue;
                     }
-                    Thread.Sleep(30);
+                    Thread.Sleep(40);
 
 
                     // 5.复制索引文件
@@ -399,7 +399,7 @@ namespace BankClearFileCopy
 
                         continue;
                     }
-                    Thread.Sleep(30);
+                    Thread.Sleep(40);
 
 
 
@@ -436,7 +436,7 @@ namespace BankClearFileCopy
                             continue;
                         }
                     }
-                    Thread.Sleep(30);
+                    Thread.Sleep(40);
 
 
                     // 结束，关闭状态
@@ -475,7 +475,7 @@ namespace BankClearFileCopy
 
         private void distBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Manager.GetInstance().IsRunning = false;
+            
 
             if (e.Error != null)    // 未处理的异常，需要弹框
             {
@@ -490,6 +490,7 @@ namespace BankClearFileCopy
                 Print_Message(string.Format(@"****执行完成 [进度: ({0}/{1}), 是否完成: {2}]****", Manager.GetInstance().BankDistCollection.OKCnt, Manager.GetInstance().BankDistCollection.Count, Manager.GetInstance().BankDistCollection.IsAllBankCopied ? "是" : "否"));
             }
 
+            Manager.GetInstance().IsRunning = false;
             executeBtn.Text = "执行";
 
             // 最后刷新
