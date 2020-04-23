@@ -54,7 +54,7 @@ namespace BankClearFileCopy
                     // 临时变量
                     string name = string.Empty;
                     string source = string.Empty;
-                    string dest = string.Empty;
+                    List<string> dest = new List<string>();
 
 
                     XmlNode valueXN;    // 临时变量
@@ -72,8 +72,16 @@ namespace BankClearFileCopy
                     valueXN = bankXN.SelectSingleNode("Dest");
                     if (valueXN != null)
                     {
-                        dest = valueXN.InnerText.Trim();
-                        dest = Util.ReplaceStringWithDateFormat(dest, _dtNow);
+
+                        string[] strTmp = valueXN.InnerText.Trim().Split(new char[] { ',', '，', ';', '；' });
+                        foreach(string s in strTmp)
+                        {
+                            if(!string.IsNullOrEmpty(s.Trim()))
+                            {
+
+                                dest.Add(Util.ReplaceStringWithDateFormat(s.Trim(), _dtNow));
+                            }
+                        }
                     }
 
 

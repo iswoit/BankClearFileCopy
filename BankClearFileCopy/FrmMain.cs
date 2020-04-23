@@ -46,7 +46,7 @@ namespace BankClearFileCopy
                 ListViewItem lvi = new ListViewItem((++idx).ToString());
                 lvi.SubItems.Add(bankDist.Name);
                 lvi.SubItems.Add(bankDist.Source);
-                lvi.SubItems.Add(bankDist.Dest);
+                lvi.SubItems.Add(bankDist.DestDescription);
                 lvi.SubItems.Add(bankDist.IsFileAllCopied ? "√" : "×");
                 lvi.SubItems.Add(bankDist.Status);
                 lvi.Tag = bankDist;
@@ -266,24 +266,31 @@ namespace BankClearFileCopy
                     try
                     {
                         // 新建目标文件夹
-                        if (!Util.IsPathExist(bankDist.Dest))
-                            Directory.CreateDirectory(bankDist.Dest);
+                        bankDist.IsDestExist = true;
 
-
-                        // 目的路径存在性
-                        if (Util.IsPathExistWithTimeout(bankDist.Dest))
+                        foreach (string s in bankDist.Dest)
                         {
-                            bankDist.IsDestExist = true;
-                            bgWorker.ReportProgress(1);
+                            if (!Util.IsPathExist(s))
+                                Directory.CreateDirectory(s);
+
+                            // 目的路径存在性
+                            if (Util.IsPathExistWithTimeout(s))
+                            {
+                                bgWorker.ReportProgress(1);
+                            }
+                            else
+                            {
+                                bankDist.IsDestExist = false;
+                                bgWorker.ReportProgress(1);
+
+                                bankDist.IsRunning = false;
+                                continue;
+                            }
                         }
-                        else
-                        {
-                            bankDist.IsDestExist = false;
-                            bgWorker.ReportProgress(1);
 
-                            bankDist.IsRunning = false;
+                        // 一旦有一个路径不能访问，就false
+                        if (bankDist.IsRunning == false)
                             continue;
-                        }
                     }
                     catch (Exception ex)
                     {
@@ -383,8 +390,13 @@ namespace BankClearFileCopy
                     try
                     {
                         string sourcePath = idxFile;
-                        string destPath = Path.Combine(bankDist.Dest, bankDist.IdxFileName);
-                        File.Copy(sourcePath, destPath, true);
+
+                        foreach(string s in bankDist.Dest)
+                        {
+                            string destPath = Path.Combine(s, bankDist.IdxFileName);
+                            File.Copy(sourcePath, destPath, true);
+                        }
+                        
                         bankDist.IsIdxFileCopied = true;
 
                     }
@@ -475,7 +487,7 @@ namespace BankClearFileCopy
 
         private void distBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            
+
 
             if (e.Error != null)    // 未处理的异常，需要弹框
             {

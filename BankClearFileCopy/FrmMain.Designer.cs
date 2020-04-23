@@ -30,20 +30,20 @@
         {
             this.mainTab = new System.Windows.Forms.TabControl();
             this.distributeTabPage = new System.Windows.Forms.TabPage();
-            this.isAllOKLb = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.stautsLb = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.logTb = new System.Windows.Forms.TextBox();
-            this.executeBtn = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.isAllOKLb = new System.Windows.Forms.Label();
+            this.executeBtn = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.logTb = new System.Windows.Forms.TextBox();
+            this.stautsLb = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.distBW = new System.ComponentModel.BackgroundWorker();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.dateLabel = new System.Windows.Forms.ToolStripLabel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.bankDistLv = new BankClearFileCopy.DoubleBufferListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,11 +61,11 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTab.SuspendLayout();
             this.distributeTabPage.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTab
@@ -89,70 +89,49 @@
             this.distributeTabPage.TabIndex = 0;
             this.distributeTabPage.Text = "清算后发送银行数据";
             // 
-            // isAllOKLb
+            // splitContainer1
             // 
-            this.isAllOKLb.AutoSize = true;
-            this.isAllOKLb.Font = new System.Drawing.Font("SimSun", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.isAllOKLb.Location = new System.Drawing.Point(826, 57);
-            this.isAllOKLb.Name = "isAllOKLb";
-            this.isAllOKLb.Size = new System.Drawing.Size(29, 19);
-            this.isAllOKLb.TabIndex = 10;
-            this.isAllOKLb.Text = "否";
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // label6
+            // splitContainer1.Panel1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(761, 63);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 12);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "是否完成:";
+            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
             // 
-            // stautsLb
+            // splitContainer1.Panel2
             // 
-            this.stautsLb.AutoSize = true;
-            this.stautsLb.Location = new System.Drawing.Point(826, 31);
-            this.stautsLb.Name = "stautsLb";
-            this.stautsLb.Size = new System.Drawing.Size(41, 12);
-            this.stautsLb.TabIndex = 8;
-            this.stautsLb.Text = "未运行";
+            this.splitContainer1.Panel2.Controls.Add(this.label3);
+            this.splitContainer1.Panel2.Controls.Add(this.isAllOKLb);
+            this.splitContainer1.Panel2.Controls.Add(this.executeBtn);
+            this.splitContainer1.Panel2.Controls.Add(this.label6);
+            this.splitContainer1.Panel2.Controls.Add(this.logTb);
+            this.splitContainer1.Panel2.Controls.Add(this.stautsLb);
+            this.splitContainer1.Panel2.Controls.Add(this.label4);
+            this.splitContainer1.Size = new System.Drawing.Size(890, 567);
+            this.splitContainer1.SplitterDistance = 406;
+            this.splitContainer1.TabIndex = 12;
             // 
-            // label4
+            // tableLayoutPanel1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(761, 31);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "运行状态:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 12);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "日志:";
-            // 
-            // logTb
-            // 
-            this.logTb.Location = new System.Drawing.Point(3, 24);
-            this.logTb.Multiline = true;
-            this.logTb.Name = "logTb";
-            this.logTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.logTb.Size = new System.Drawing.Size(733, 113);
-            this.logTb.TabIndex = 5;
-            // 
-            // executeBtn
-            // 
-            this.executeBtn.Location = new System.Drawing.Point(772, 101);
-            this.executeBtn.Name = "executeBtn";
-            this.executeBtn.Size = new System.Drawing.Size(75, 26);
-            this.executeBtn.TabIndex = 4;
-            this.executeBtn.Text = "执行";
-            this.executeBtn.UseVisualStyleBackColor = true;
-            this.executeBtn.Click += new System.EventHandler(this.executeBtn_Click);
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.bankDistLv, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.bankDistDetailLv, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 168F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 228F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(888, 404);
+            this.tableLayoutPanel1.TabIndex = 11;
             // 
             // label2
             // 
@@ -174,6 +153,71 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "存管列表:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 12);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "日志:";
+            // 
+            // isAllOKLb
+            // 
+            this.isAllOKLb.AutoSize = true;
+            this.isAllOKLb.Font = new System.Drawing.Font("SimSun", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.isAllOKLb.Location = new System.Drawing.Point(826, 57);
+            this.isAllOKLb.Name = "isAllOKLb";
+            this.isAllOKLb.Size = new System.Drawing.Size(29, 19);
+            this.isAllOKLb.TabIndex = 10;
+            this.isAllOKLb.Text = "否";
+            // 
+            // executeBtn
+            // 
+            this.executeBtn.Location = new System.Drawing.Point(772, 101);
+            this.executeBtn.Name = "executeBtn";
+            this.executeBtn.Size = new System.Drawing.Size(75, 26);
+            this.executeBtn.TabIndex = 4;
+            this.executeBtn.Text = "执行";
+            this.executeBtn.UseVisualStyleBackColor = true;
+            this.executeBtn.Click += new System.EventHandler(this.executeBtn_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(761, 63);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 12);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "是否完成:";
+            // 
+            // logTb
+            // 
+            this.logTb.Location = new System.Drawing.Point(3, 24);
+            this.logTb.Multiline = true;
+            this.logTb.Name = "logTb";
+            this.logTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.logTb.Size = new System.Drawing.Size(733, 113);
+            this.logTb.TabIndex = 5;
+            // 
+            // stautsLb
+            // 
+            this.stautsLb.AutoSize = true;
+            this.stautsLb.Location = new System.Drawing.Point(826, 31);
+            this.stautsLb.Name = "stautsLb";
+            this.stautsLb.Size = new System.Drawing.Size(41, 12);
+            this.stautsLb.TabIndex = 8;
+            this.stautsLb.Text = "未运行";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(761, 31);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "运行状态:";
             // 
             // distBW
             // 
@@ -201,50 +245,6 @@
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(146, 26);
             this.dateLabel.Text = "YYYY-MM-DD";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.bankDistLv, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.bankDistDetailLv, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 168F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 228F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(888, 404);
-            this.tableLayoutPanel1.TabIndex = 11;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.label3);
-            this.splitContainer1.Panel2.Controls.Add(this.isAllOKLb);
-            this.splitContainer1.Panel2.Controls.Add(this.executeBtn);
-            this.splitContainer1.Panel2.Controls.Add(this.label6);
-            this.splitContainer1.Panel2.Controls.Add(this.logTb);
-            this.splitContainer1.Panel2.Controls.Add(this.stautsLb);
-            this.splitContainer1.Panel2.Controls.Add(this.label4);
-            this.splitContainer1.Size = new System.Drawing.Size(890, 567);
-            this.splitContainer1.SplitterDistance = 406;
-            this.splitContainer1.TabIndex = 12;
             // 
             // bankDistLv
             // 
@@ -367,14 +367,14 @@
             this.Text = "银行清算文件拷贝";
             this.mainTab.ResumeLayout(false);
             this.distributeTabPage.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

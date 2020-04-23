@@ -12,7 +12,7 @@ namespace BankClearFileCopy
         // 静态变量
         private string _name;                           // 存管名称
         private string _source;                         // 源路径
-        private string _dest;                           // 目的路径
+        private List<string> _dest;                           // 目的路径-20200423：修改为支持多目的
         private List<BankDistFile> _bankDistFileList;       // 存管清算发送文件列表
         private string _idxFileName;                    // 索引文件名
 
@@ -33,7 +33,7 @@ namespace BankClearFileCopy
         /// <param name="name"></param>
         /// <param name="source"></param>
         /// <param name="dest"></param>
-        public BankDist(string name, string source, string dest, DateTime dtNow)
+        public BankDist(string name, string source, List<string> dest, DateTime dtNow)
         {
             _name = name;
             _source = source;
@@ -57,9 +57,28 @@ namespace BankClearFileCopy
             get { return _source; }
         }
 
-        public string Dest
+        public List<string> Dest
         {
-            get { return _dest; }
+            get
+            {
+                return _dest;
+            }
+        }
+
+
+        public string DestDescription
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach(string s in _dest)
+                {
+                    if (sb.Length != 0)
+                        sb.Append(";");
+                    sb.Append(s);
+                }
+                return sb.ToString();
+            }
         }
 
 

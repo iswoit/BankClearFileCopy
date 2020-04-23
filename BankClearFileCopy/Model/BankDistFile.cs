@@ -169,18 +169,23 @@ namespace BankClearFileCopy
             if (_checkedPassed)
             {
                 string sourcePath = Path.Combine(_bankDist.Source, _fileName);
-                string destPath = Path.Combine(_bankDist.Dest, _fileName);
 
-                try
+                foreach(string s in _bankDist.Dest)
                 {
-                    File.Copy(sourcePath, destPath, true);
-                    _isCopied = true;
+                    string destPath = Path.Combine(s, _fileName);
+
+                    try
+                    {
+                        File.Copy(sourcePath, destPath, true);
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        _isCopied = false;
+                        _stauts = ex.Message;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    _isCopied = false;
-                    _stauts = ex.Message;
-                }
+                _isCopied = true;
             }
         }
 
